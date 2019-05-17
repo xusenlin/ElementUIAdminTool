@@ -88,26 +88,13 @@ func buildPageSubDir() bool {
 	ImgDir = PageDir + "/img"
 	MixinDir = PageDir + "/mixin"
 
-	cssErr := os.Mkdir(CssDir, os.ModePerm)
-	if cssErr != nil {
-		fmt.Println("生成"+ CssDir +"目录失败！")
-		return false
-	}
-	fmt.Println("生成"+ CssDir +"目录成功！")
 
-	imgErr := os.Mkdir(ImgDir, os.ModePerm)
-	if imgErr != nil {
-		fmt.Println("生成"+ ImgDir +"目录失败！")
-		return false
+	if helper.Mkdir(CssDir) && helper.Mkdir(ImgDir) && helper.Mkdir(MixinDir){
+		return true
 	}
-	fmt.Println("生成"+ ImgDir +"目录成功！")
 
-	mixinErr := os.Mkdir(MixinDir, os.ModePerm)
-	if mixinErr != nil {
-		fmt.Println("生成"+ MixinDir +"目录失败！")
-		return false
-	}
-	fmt.Println("生成"+ MixinDir +"目录成功！")
+	fmt.Println("生成" + CssDir + "、" + ImgDir + "、" + MixinDir + "、" + "目录失败！")
 
-	return true
+	return false
+
 }
