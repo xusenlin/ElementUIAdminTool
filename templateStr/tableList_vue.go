@@ -28,13 +28,13 @@ var TableList  = `
             </div>
         </ToolBar>
         <el-table
-                :data="tableData"
-                border
-                style="width: 100%">
+			:data="tableData"
+			border
+			style="width: 100%">
 		{% range $field := .Fields %}
 			<el-table-column
-					prop="name"
-					label="{% $field %}">
+				prop="name"
+				label="{% $field %}">
 			</el-table-column>
 		{% end %}
             <el-table-column

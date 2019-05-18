@@ -7,8 +7,8 @@ var FormVue  = `
         <el-form :model="form" :rules="rules" label-width="160px">
 		{% range $field := .Fields %}
 			<el-form-item label="{% $field %}" prop="name">
-                <el-input v-model="form.name" placeholder="请输入" style="width: 260px"></el-input>
-            </el-form-item>
+				<el-input v-model="form.name" placeholder="请输入" style="width: 260px"></el-input>
+			</el-form-item>
 		{% end %}
 
             <el-form-item label="select组件" prop="name">
