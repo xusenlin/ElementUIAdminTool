@@ -3,7 +3,7 @@ package templateStr
 var TableList  = `
 <style lang="scss">@import "./css/style.scss";</style>
 <template>
-    <div id="keyword">
+    <div id="{% .Module %}{% .Dir %}">
         <ToolBar>
             <el-button type="primary" icon="el-icon-plus" size="small">添加</el-button>
             <div>
@@ -23,37 +23,20 @@ var TableList  = `
                             :value="k">
                     </el-option>
                 </el-select>
-
-                <el-select v-model="searchParams.postStatus" size="small" clearable placeholder="请选择状态"
-                           style="width: 120px">
-                    <el-option
-                            v-for="(v,k) in $Cfg.postStatus"
-                            :key="k"
-                            :label="v"
-                            :value="k">
-                    </el-option>
-                </el-select>
                 <el-button type="success"  size="small" @click="">查询</el-button>
+				<el-button type="warning" size="small" @click="">重置</el-button>
             </div>
         </ToolBar>
         <el-table
                 :data="tableData"
                 border
                 style="width: 100%">
-            <el-table-column
-                    prop="date"
-                    label="日期"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="name"
-                    label="标题"
-                    width="180">
-            </el-table-column>
-            <el-table-column
-                    prop="address"
-                    label="摘要">
-            </el-table-column>
+		{% range $field := .Fields %}
+			<el-table-column
+					prop="name"
+					label="{% $field %}">
+			</el-table-column>
+		{% end %}
             <el-table-column
                     label="操作"
                     width="280">
@@ -81,20 +64,16 @@ var TableList  = `
     import ToolBar from '@/components/ToolBar.vue';
     import HelpHint from '@/components/HelpHint.vue';
     import Pagination from '@/components/Pagination.vue';
-    import paginationMixin from './mixin/page.js'
+    import paginationMixin from './mixin/pagination.js'
 
     export default {
         mixins:[paginationMixin],
         data() {
             return {
                 tableData: [{
-                    date: '2016-05-03',
                     name: 'Lorem ipsum dolor sit amet,',
-                    address: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores fugit in quae vero. Adipisci blanditiis dignissimos eum facere laudantium quasi ratione repellat vitae! Alias consequatur dolores enim neque similique unde.'
                 }, {
-                    date: '2016-05-02',
                     name: 'Lorem ipsum dolor sit amet,',
-                    address: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores fugit in quae vero. Adipisci blanditiis dignissimos eum facere laudantium quasi ratione repellat vitae! Alias consequatur dolores enim neque similique unde.'
                 }]
             }
         },

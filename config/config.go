@@ -12,6 +12,7 @@ var (
 	Module string
 	Dir string
 	Type string
+	Fields string
 	ViewDir string
 	ModuleDir string
 	PageDir string
@@ -21,9 +22,10 @@ var (
 )
 
 func init()  {
-	flag.StringVar(&Module, "m", "", "views下的目录,不存在会新建。代表一个功能模块(Module)")
-	flag.StringVar(&Dir, "d", "", "参数m目录下的目录,存在不会覆盖。代表一个页面目录(Dir)")
-	flag.StringVar(&Type, "t", "1", "默认值(1)。1生成table列表，2生成form(Type)")
+	flag.StringVar(&Module, "m", "", "Module必填，views下的目录,不存在会新建。代表一个功能模块")
+	flag.StringVar(&Dir, "d", "", "Dir必填，参数m目录下的目录,存在不会覆盖。代表一个页面目录")
+	flag.StringVar(&Type, "t", "1", "Type默认值(\"1\")，1生成table列表，2生成form")
+	flag.StringVar(&Fields, "f", "ID|标题", "Field默认值(\"ID|标题\")，指定table或者form的字段，用|隔开,表格自动添加操作列，如-f=\"ID|标题|状态|时间\"")
 }
 
 func InitConfigAndDir() bool {

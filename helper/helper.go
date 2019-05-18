@@ -9,7 +9,7 @@ import (
 func IsDir(path string) bool {
 	s, err := os.Stat(path)
 	if err != nil {
-		panic(err)
+		return false
 	}
 	return s.IsDir()
 }
