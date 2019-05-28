@@ -2,6 +2,8 @@ package templateStr
 
 var Pagination  = `
 import {pageList} from '@/api/user.js'
+import {resetArgs} from "@/utils/index.js";
+
 export default {
     data() {
         return {
@@ -11,11 +13,19 @@ export default {
                 postType: '',
                 postStatus: '',
             },
+			tableData: []
         }
     },
     methods: {
         returnData(pageList){
-            console.log(pageList)
+            this.tableData = pageList.list
+        },
+        clearSearchParams(){
+            resetArgs(this.searchParams);
+            this.refresh();
+        },
+        refresh(){
+            this.$refs.pagination.Refresh()
         }
     },
 }
