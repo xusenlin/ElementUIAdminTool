@@ -26,6 +26,13 @@ export default {
         },
         refresh(){
             this.$refs.pagination.Refresh()
+        },
+		filterParams(p){
+            //let newParams = cloneDeep(p);
+            //newParams.labels = newParams.labels.map(r=>{
+            //    return {labelId:r.id,labelName:r.name}
+            //});
+            return p;
         }
     },
 }

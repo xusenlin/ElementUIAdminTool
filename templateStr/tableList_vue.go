@@ -17,14 +17,14 @@ var TableList  = `
                 <el-select v-model="searchParams.postType" size="small" clearable placeholder="请选择分类"
                            style="width: 140px">
                     <el-option
-                            v-for="(v,k) in $Cfg.postType"
+                            v-for="(v,k) in keyMap.postType"
                             :key="k"
                             :label="v"
                             :value="k">
                     </el-option>
                 </el-select>
-                <el-button type="success"  size="small" @click="">查询</el-button>
-				<el-button type="warning" size="small" @click="">重置</el-button>
+                <el-button type="success"  size="small" @click="refresh()">查询</el-button>
+				<el-button type="warning" size="small" @click="clearSearchParams()">重置</el-button>
             </div>
         </ToolBar>
         <el-table
@@ -53,16 +53,17 @@ var TableList  = `
             </el-table-column>
         </el-table>
         <Pagination
+			ref="pagination"
             :params="searchParams"
             :requestFunc="requestFunc"
             @returnData="returnData"
+			:filterParams="filterParams"
         />
     </div>
 </template>
 
 <script>
     import ToolBar from '@/components/ToolBar.vue';
-    import HelpHint from '@/components/HelpHint.vue';
     import Pagination from '@/components/Pagination.vue';
     import paginationMixin from './mixin/pagination.js'
 
@@ -70,26 +71,19 @@ var TableList  = `
         mixins:[paginationMixin],
         data() {
             return {
-                tableData: [{
-                    name: 'Lorem ipsum dolor sit amet,',
-                }, {
-                    name: 'Lorem ipsum dolor sit amet,',
-                }]
+                keyMap:{
+					postType:[]
+                },
             }
         },
         methods: {
-            handleClick(row) {
-                this.$alert(row, '标题名称', {
-                    confirmButtonText: '确定',
-                    callback: action => {}
-                });
-            },
+            
         },
         created() {
 
         },
         components: {
-            ToolBar, HelpHint, Pagination
+            ToolBar, Pagination
         }
     }
 </script>
