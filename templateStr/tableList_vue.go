@@ -65,7 +65,7 @@ var TableList  = `
 <script>
     import ToolBar from '@/components/ToolBar.vue';
     import Pagination from '@/components/Pagination.vue';
-    import paginationMixin from './mixin/pagination.js'
+    import paginationMixin from './mixin/page.js'
 
     export default {
         mixins:[paginationMixin],
