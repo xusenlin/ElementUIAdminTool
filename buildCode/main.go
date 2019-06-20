@@ -84,7 +84,7 @@ func buildTableVue()  {
 
 
 func buildMixin()  {
-	if helper.WriteFile(config.MixinDir+"/pagination.js", []byte(templateStr.Pagination)) {
+	if helper.WriteFile(config.MixinDir+"/page.js", []byte(templateStr.Pagination)) {
 		fmt.Println("生成" + config.MixinDir + "/Index.vue" + "文件成功！")
 	}
 }
